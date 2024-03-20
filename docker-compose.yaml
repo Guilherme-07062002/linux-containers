@@ -7,6 +7,11 @@ services:
       - "2222:22" # Mapeia a porta 2222 do host para a porta 22 do container
     volumes:
       - ./scripts:/scripts # Mapeia o diretório de scripts para dentro do container
+    networks:
+      my_network:
+        ipv4_address: 192.168.0.10
+    command: /bin/sh -c "apt-get update && apt-get install -y iproute2 bridge-utils && echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf && /usr/sbin/sshd -D"
+
   debian2:
     image: debian-ssh
     container_name: debian2
@@ -14,6 +19,10 @@ services:
       - "2223:22"
     volumes:
       - ./scripts:/scripts
+    networks:
+      my_network:
+        ipv4_address: 192.168.0.20
+          
   debian3:
     image: debian-ssh
     container_name: debian3
@@ -21,3 +30,13 @@ services:
       - "2224:22"
     volumes:
       - ./scripts:/scripts
+    networks:
+      my_network:
+        ipv4_address: 192.168.0.30
+
+networks:
+  my_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
