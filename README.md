@@ -23,3 +23,12 @@ Neste cenário, cada container Debian terá o servidor SSH instalado e configura
 ```bash
 ssh root@<container_ip>
 ```
+
+
+Caso seja retornado alguma mensagem de erro indicando problemas de permissão, execute o comando abaixo:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Após executá-lo reinicie a máquina, provavelmente após isso você poderá executar os comandos normalmente sem maiores problemas.
