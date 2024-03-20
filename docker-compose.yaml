@@ -1,0 +1,23 @@
+version: "3"
+services:
+  debian1:
+    image: debian-ssh
+    container_name: debian1
+    ports:
+      - "2222:22" # Mapeia a porta 2222 do host para a porta 22 do container
+    volumes:
+      - ./scripts:/scripts # Mapeia o diretório de scripts para dentro do container
+  debian2:
+    image: debian-ssh
+    container_name: debian2
+    ports:
+      - "2223:22"
+    volumes:
+      - ./scripts:/scripts
+  debian3:
+    image: debian-ssh
+    container_name: debian3
+    ports:
+      - "2224:22"
+    volumes:
+      - ./scripts:/scripts
