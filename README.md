@@ -25,10 +25,8 @@ ssh root@<container_ip>
 ```
 
 
-Caso seja retornado alguma mensagem de erro indicando problemas de permissão, execute o comando abaixo:
+Caso seja retornado alguma mensagem de erro indicando problemas de permissão, execute o comando abaixo e reinicie a máquina:
 
 ```bash
 sudo usermod -aG docker $USER
 ```
-
-Após executá-lo reinicie a máquina, provavelmente após isso você poderá executar os comandos normalmente sem maiores problemas.
